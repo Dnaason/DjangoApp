@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>form</title>
+	<!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+	<style>
+		*{
+	padding:0;
+	margin:0;
+	font-family: sans-serif;
+	box-sizing: border-box;
+}
+body{
+	justify-content: center;
+	align-items:center;
+	display:flex;
+    min-height: 100vh;
+    margin:0;
+}
+.container{
+	background: gray;
+	width:400px;
+	overflow: hidden;
+	border-radius: 4px;
+}
+.container h2{
+	margin: 5px 100px 0 50px;
+}
+.header{
+	background:darkgrey;
+	padding:10px 20px;
+}
+.container form{
+	padding:20px 40px;
+}
+.container .user-control{
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+	position:relative;
+}
+.container .user-control label{
+	display: inline-block;
+	margin-bottom: 5px;
+}
+
+.container .user-control input{
+	display:block;
+	width:100%;
+	padding:10px;
+	border-radius:4px;
+	border:2px solid black;
+}
+.container .btn{
+	background:#10bbec;
+	width:100%;
+	padding:10px;
+	border:2px solid #10bbec;
+	cursor:pointer;
+	font-weight: bold;
+	font-size:20px;
+}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="header">
+			<h2>Register client</h2>
+		</div>
+
+		<form class="form" method="POST" action="{% url 'home' %}">
+			{% csrf_token %}
+			<div class="user-control">
+				<label for="name">User Name:</label>
+				<input type="text" name="name" id="name">
+			</div>
+			<div class="user-control">
+				<label for="email">Email:</label>
+				<input type="email" name="email" id="email">
+			</div>
+			<div class="user-control">
+				<label for="password">Password:</label>
+				<input type="password" name="password" id="password">
+			</div>
+			<div class="user-control">
+				<label for="repassword">Retype-Password:</label>
+				<input type="password" name="repassword" id="repassword">
+			</div>
+			<button class="btn" type="submit">Register</button>
+			<a href="register">client</a>
+
+		</form>
+	</div>
+		<table>
+			<tr>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Password</th>
+				<th>REPassword</th>
+				<th>Update</th>
+				<th>Delete</th>
+			</tr>
+			{% for dataselect in data %}
+			<tr>
+				<td>{{ dataselect.name }}</td>
+				<td>{{ dataselect.email }}</td>
+				<td>{{ dataselect.password }}</td>
+				<td>{{ dataselect.repassword }}</td>
+				<td>{{ delete }}</td>
+			</tr>
+			{% endfor %}
+		</table>
+
+</body>
+</html>
